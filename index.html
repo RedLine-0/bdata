@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Narrador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+    }
+    .chat-box {
+      width: 50%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .bot-message {
+      background-color: #d3e0ff;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .user-message {
+      background-color: #e1f7d5;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box" id="chat-box">
+    <div class="bot-message">Hola, soy el bot narrador. Te contaré una historia. ¡Vamos allá!</div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const story = [
+      "Hola estudiantes, les voy a contar una historia, Lucía era una estudiante universitaria de tercer año en una pequeña ciudad costera. Su vida era una mezcla de clases, trabajos a medio tiempo y largas noches de estudio.",
+      "Siempre había sido la más organizada de su grupo de amigos, y aunque a veces sentía la presión de cumplir con todo, se mantenía enfocada en sus sueños de convertirse en ingeniera ambiental.",
+      "Una tarde de otoño, mientras caminaba hacia la biblioteca con una taza de café en mano, vio un cartel que anunciaba una competencia de proyectos de sostenibilidad.",
+      "El primer premio consistía en una beca para un seminario internacional en el que podría aprender sobre soluciones innovadoras para el cambio climático.",
+      "La idea la emocionó tanto que, sin pensarlo demasiado, decidió inscribirse. Su proyecto trataba sobre la reutilización del agua en las viviendas urbanas, una propuesta que había estado desarrollando en su tiempo libre.",
+      "Durante semanas, Lucía dedicó sus días a perfeccionar cada detalle, desde la investigación hasta la presentación.",
+      "El día de la competencia, estaba nerviosa, pero también llena de confianza en su trabajo. Cuando subió al escenario, vio a los jueces mirar atentamente sus diapositivas, asintiendo mientras explicaba su propuesta.",
+      "Al final, su presentación fue un éxito rotundo.",
+      "Una semana después, recibió un correo con el anuncio: había ganado el primer lugar. Lucía no podía creerlo. La beca no solo le abrió nuevas oportunidades, sino que también la impulsó a seguir persiguiendo su pasión por el medio ambiente."
+    ];
+
+    let index = 0;
+
+    function speakNextPart() {
+      if (index < story.length) {
+        const message = document.createElement("div");
+        message.classList.add("bot-message");
+        message.innerText = story[index];
+        chatBox.appendChild(message);
+        index++;
+        chatBox.scrollTop = chatBox.scrollHeight; // Para desplazarse hacia abajo automáticamente
+        setTimeout(speakNextPart, 4000); // Esperar 4 segundos antes de contar la siguiente parte
+      }
+    }
+
+    speakNextPart();
+  </script>
+</body>
+</html>
